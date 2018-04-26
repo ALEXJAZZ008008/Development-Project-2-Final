@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="Scenarios.Storyboard.UserControls.Effects.BooleanEffectControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="70" d:DesignWidth="300"
+             x:Name="BooleanEffect">
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <Label Content="{Binding Path=EffectVisual, ElementName=BooleanEffect}" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="15,0,15,0" Foreground="White" />
+        <!--<controls:ToggleSwitch HorizontalAlignment="Center" VerticalAlignment="Center" Header="{Binding Path=EffectName, ElementName=BooleanEffect}" IsChecked="{Binding Path=EffectIsEnabled, ElementName=BooleanEffect, Mode=TwoWay}" OnLabel="Enabled" OffLabel="Disabled" Margin="15,0,15,0" Foreground="White" FontSize="16" />-->
+    </StackPanel>
+</UserControl>

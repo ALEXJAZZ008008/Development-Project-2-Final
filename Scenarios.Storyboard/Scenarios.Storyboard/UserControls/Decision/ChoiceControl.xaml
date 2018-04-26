@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Scenarios.Storyboard.UserControls.Decision.ChoiceControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="275" d:DesignWidth="300"
+             x:Name="ChoiceCtrl">
+    <Grid Background="Transparent">
+        <GroupBox Header="Choice">
+            <StackPanel Margin="10,10,10,10">
+            <Label Content="Enter choice name." FontFamily="Segoe UI Semibold" FontSize="16" />
+            <TextBox Text="{Binding Choice.Text,  ElementName=ChoiceCtrl}"/>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <Label Content="Choice Destination Scenario" FontFamily="Segoe UI Semibold" FontSize="16" />
+                    <ComboBox ItemsSource="{Binding Choice.ParentDecision.ParentScenario.Storyboard.Scenarios, ElementName=ChoiceCtrl}"
+                          SelectedItem="{Binding Choice.DestinationScenario, ElementName=ChoiceCtrl, Mode=TwoWay}" Width="200"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Score" FontFamily="Segoe UI Semibold" FontSize="16" />
+                    <TextBox Text="{Binding Choice.Score,ElementName=ChoiceCtrl}" />
+                </StackPanel>
+            </StackPanel>
+            <Label Content="Feedback" FontFamily="Segoe UI Semibold" FontSize="16"/>
+            <TextBox Text="{Binding Choice.FeedbackText, ElementName=ChoiceCtrl, Mode=TwoWay}" 
+                     Height="45"
+                     MaxWidth="300" 
+                     TextWrapping="Wrap" 
+                     HorizontalScrollBarVisibility="Visible" />
+        </StackPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>

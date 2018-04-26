@@ -1,6 +1,7 @@
 ﻿using API;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -137,14 +138,18 @@ public class Scenarios : MonoBehaviour
     {
         string[] commandLineArguments = Environment.GetCommandLineArgs();
 
+        string json = string.Empty;
+
         if (commandLineArguments.Length < 2 || defaultScenarioListBool)
         {
-            JSONParser.JSONToTObject(defaultScenarioListJSON.text, ref scenarioList);
+            json = defaultScenarioListJSON.text;
         }
         else
         {
-            JSONParser.JSONToTObject(commandLineArguments[1], ref scenarioList);
+            json = commandLineArguments[1];
         }
+
+        JSONParser.JSONToTObject(json, ref scenarioList);
 
         UpdateCurrentScenario();
     }

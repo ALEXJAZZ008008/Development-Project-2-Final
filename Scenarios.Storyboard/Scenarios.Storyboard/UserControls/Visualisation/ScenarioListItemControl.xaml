@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Scenarios.Storyboard.UserControls.Visualisation.ScenarioListItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="500"
+             x:Name="scenarioItem">
+    <Grid Height="200" Background="#FF1B1B1B">
+        <GroupBox Header="Scenario">
+            <StackPanel Orientation="Horizontal">
+                <Border BorderBrush="#CC119EDA" BorderThickness="2" >
+                    <Image Source="{Binding Scenario.VideoOptions.ThumbnailPath, ElementName=scenarioItem}" Width="200" />
+                </Border>
+                <StackPanel Margin="30,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Name"  FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" FontSize="16" />
+                    <Label Content="{Binding Scenario.Name, ElementName=scenarioItem}" FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" FontSize="16" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Text"  FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" FontSize="16" />
+                    <Label Content="{Binding Scenario.ScenarioText, ElementName=scenarioItem}" FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" FontSize="16" VerticalAlignment="Center"/>
+                </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Decision"  FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" FontSize="16" />
+                        <Label Content="{Binding Scenario.Decision.DecisionText, ElementName=scenarioItem}" FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" FontSize="16" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+        </StackPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>

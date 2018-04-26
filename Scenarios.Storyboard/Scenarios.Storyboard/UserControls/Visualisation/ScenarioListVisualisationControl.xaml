@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Scenarios.Storyboard.UserControls.Visualisation.ScenarioListVisualisationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:visualisation="clr-namespace:Scenarios.Storyboard.UserControls.Visualisation"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="ListVisualisation">
+    <Grid>
+        <StackPanel>
+            <Button Width="150" HorizontalAlignment="Left" Background="Green"
+                    Command="{Binding Path=Storyboard.AddNewScenarioCommand, ElementName=ListVisualisation}">
+                <Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{iconPacks:Modern Kind=Add}" Foreground="White" />
+                        <Label Content="Add New Scenario" Foreground="White"/>
+                    </StackPanel>
+                </Grid>
+            </Button>
+            <ListView ItemsSource="{Binding Path=Storyboard.Scenarios, ElementName=ListVisualisation, Mode=TwoWay}"
+                      SelectedItem="{Binding Path=Storyboard.SelectedScenario, ElementName=ListVisualisation, Mode=TwoWay}"
+                     AlternationCount ="{Binding Path=Scenarios.Count}"
+                      Margin="0,20,0,0">
+                <ListView.InputBindings>
+                    <KeyBinding Key="Delete" Command="{Binding Path=Storyboard.RemoveScenarioCommand, ElementName=ListVisualisation}" />
+                </ListView.InputBindings>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <visualisation:ScenarioListItemControl Scenario="{Binding}" 
+                                                               Index="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListViewItem}}"></visualisation:ScenarioListItemControl>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</UserControl>

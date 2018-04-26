@@ -301,11 +301,8 @@
     <None Include="Assets\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.XML" />
     <None Include="Assets\JsonDotNet\Assemblies\Windows\Newtonsoft.Json.XML" />
     <None Include="Assets\JsonDotNet\link.xml" />
-    <None Include="Assets\Output\output 636598494101179240.txt" />
-    <None Include="Assets\Output\output 636598583840153461.txt" />
-    <None Include="Assets\Output\output 636598587313580188.txt" />
-    <None Include="Assets\Output\output 636598664336100440.txt" />
-    <None Include="Assets\Output\output 636603470132775405.txt" />
+    <None Include="Assets\Output\output 636603581277569719.txt" />
+    <None Include="Assets\Output\output 636603587672465727.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

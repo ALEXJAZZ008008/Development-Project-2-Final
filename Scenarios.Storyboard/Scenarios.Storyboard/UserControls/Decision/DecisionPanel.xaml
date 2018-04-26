@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Scenarios.Storyboard.UserControls.Decision.DecisionPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:decision="clr-namespace:Scenarios.Storyboard.UserControls.Decision"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="400"
+             x:Name="DecisionPnl">
+    <Grid>
+        <StackPanel>
+            <GroupBox Header="Decision Options">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Decision Text" FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" Foreground="White" />
+                    </StackPanel>
+                    <TextBox Margin="0,0,0,10" Text="{Binding Decision.DecisionText, ElementName=DecisionPnl}"/>
+                    <StackPanel Orientation="Horizontal">
+                    <Label Content="{iconPacks:Material Kind=Timer, Height=40, Width=40}" Foreground="White"/>
+                    <Label Content="Decision Wait Time" FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" Foreground="White"/>
+                        <TextBox Width="40" Height="40" Text="{Binding Decision.DecisionWaitTime, ElementName=DecisionPnl}"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Choices">
+                <StackPanel>
+                    <ListBox ItemsSource="{Binding Decision.Choices, ElementName=DecisionPnl}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <decision:ChoiceControl Choice="{Binding}" Margin="0,0,0,10"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button Command="{Binding Decision.AddNewChoiceCommand, ElementName=DecisionPnl}" Background="Green" Width="150">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{iconPacks:Modern Kind=Add}" Foreground="White" />
+                                <Label Content="Add New Choice" Foreground="White"/>
+                            </StackPanel>
+                        </Grid>
+                    </Button>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

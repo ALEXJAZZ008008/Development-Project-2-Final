@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Scenarios.Storyboard.UserControls.Effects.EffectPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:local="clr-namespace:Scenarios.Storyboard.UserControls.Effects"
+             xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="400"
+             x:Name="EffectPnl" >
+    <Grid>
+        <StackPanel>
+            <local:BooleanEffectControl EffectIsEnabled="{Binding Path=EffectOptions.FireIsEnabled, ElementName=EffectPnl, Mode=TwoWay}"
+                                        EffectName="Fire"
+                                        EffectVisual="{iconPacks:FontAwesome Kind=FireSolid, Width=40, Height=40}"/>
+            <local:BooleanEffectControl EffectIsEnabled="{Binding Path=EffectOptions.SmokeIsEnabled, ElementName=EffectPnl, Mode=TwoWay}" 
+                                        EffectName="Smoke"
+                                        EffectVisual="{iconPacks:Entypo Kind=Air, Width=40, Height=40}" />
+            <local:BooleanEffectControl EffectIsEnabled="{Binding Path=EffectOptions.FireExtinguisherPlumeIsEnabled, ElementName=EffectPnl, Mode=TwoWay}"
+                                        EffectName="Extinguisher Plume" 
+                                        EffectVisual="{iconPacks:FontAwesome Kind=FireExtinguisherSolid, Width=40, Height=40}"/>
+            <local:BooleanEffectControl EffectIsEnabled="{Binding Path=EffectOptions.EmergencyLightingIsEnabled, ElementName=EffectPnl, Mode=TwoWay}"
+                                        EffectName="Emergency Lighting"
+                                        EffectVisual="{iconPacks:Material Kind=AlarmLight, Width=40, Height=40}" />
+            <local:SliderEffectControl EffectValue="{Binding Path=EffectOptions.EmergencyLightingIntensity,ElementName=EffectPnl, Mode=TwoWay}" 
+                                       EffectName="Emergency Lighting Intensity"
+                                       EffectVisual="{iconPacks:Material Kind=Brightness6, Width=40, Height=40}"/>
+            <Button Command="{Binding Path=EffectOptions.SetFireArcsCommand, ElementName=EffectPnl}" Content="Launch Fire Arc"></Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

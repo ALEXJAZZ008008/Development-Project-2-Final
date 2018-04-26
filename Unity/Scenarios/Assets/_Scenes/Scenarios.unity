@@ -3499,4 +3499,4 @@ MonoBehaviour:
   scenarioText: {fileID: 1681917384}
   scenarioChoiceText: {fileID: 1751585076}
   importScenarioBool: 1
-  defaultScenarioListBool: 1
+  defaultScenarioListBool: 0

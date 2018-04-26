@@ -559,7 +559,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 0
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 0
   m_FrameReadyEventEnabled: 0
 --- !u!4 &460213452
@@ -1988,4 +1988,4 @@ MonoBehaviour:
   defaultScenarioListJSON: {fileID: 4900000, guid: 524dec5b3e895e54383d654ee8fae378,
     type: 3}
   importScenarioBool: 1
-  defaultScenarioListBool: 1
+  defaultScenarioListBool: 0
