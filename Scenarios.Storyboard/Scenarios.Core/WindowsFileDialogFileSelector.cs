@@ -1,10 +1,18 @@
-﻿namespace Scenarios.Core
+﻿using Microsoft.Win32;
+
+namespace Scenarios.Core
 {
     public class WindowsFileDialogFileSelector : IUserFileSelector
     {
         public string PromptUser()
         {
-            throw new System.NotImplementedException();
+            string result; 
+
+            OpenFileDialog dialog = new OpenFileDialog();
+            bool? HasResult = dialog.ShowDialog();
+            result = dialog.FileName;
+
+            return result;
         }
     }
 }

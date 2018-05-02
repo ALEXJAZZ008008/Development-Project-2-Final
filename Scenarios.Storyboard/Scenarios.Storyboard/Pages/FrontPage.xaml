@@ -7,10 +7,13 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <StackPanel Width="300" HorizontalAlignment="Center" Height="150">
+        <StackPanel Width="300" HorizontalAlignment="Center" Height="300">
             <Label Content="SCENARIOS" HorizontalAlignment="Center" FontSize="48"/>
-            <Button Content="New Storyboard" Command="{Binding NewStoryboardCommand}" Margin="0,0,0,5"/>
-            <Button Content="Load Storyboard"/>
+            <Button Content="New Storyboard" Command="{Binding NewStoryboardCommand}"
+                    Margin="0,0,0,5"/>
+            <Button Content="Load Storyboard" Command="{Binding LoadStoryboardCommand}"
+                    Margin="0,0,0,5" />
+            <Button Content="Settings" Command="{Binding SettingsCommand}"></Button>
         </StackPanel>
     </Grid>
 </local:NavigablePage>

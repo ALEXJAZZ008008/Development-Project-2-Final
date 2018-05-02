@@ -11,10 +11,8 @@ namespace Scenarios.Storyboard.InversionOfControl.Installers
         {
             container.Register(Component.For<IFireArcUtility>()
                             .ImplementedBy<FireArc>()
-                            .DependsOn(Dependency.OnValue("path", Properties.Settings.Default.fireArcPath)));
-            container.Register(Component.For<ISmokeArcUtility>()
-                                        .ImplementedBy<SmokeArc>()
-                                        .DependsOn(Dependency.OnValue("path", Properties.Settings.Default.smokeArcPath)));
+                            .DependsOn(Dependency.OnValue("path", Properties.Settings.Default.fireArcPath))
+                            .DependsOn(Dependency.OnValue("outputPath", Properties.Settings.Default.arcOutputPath)));
         }
     }
 }

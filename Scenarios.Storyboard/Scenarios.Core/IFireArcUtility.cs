@@ -5,6 +5,6 @@ namespace Scenarios.Core
 {
     public interface IFireArcUtility
     {
-        List<List<float>> GetFireArcs(Scenario scenario, string outputPath);
+        List<List<float>> GetFireArcs(Scenario scenario);
     }
 }

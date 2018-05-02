@@ -14,9 +14,9 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
                     <Label Content="Choice Destination Scenario" FontFamily="Segoe UI Semibold" FontSize="16" />
-                    <ComboBox ItemsSource="{Binding Choice.ParentDecision.ParentScenario.Storyboard.Scenarios, ElementName=ChoiceCtrl}"
+                        <ComboBox ItemsSource="{Binding Path=AvailableDestinations, ElementName=ChoiceCtrl}"
                           SelectedItem="{Binding Choice.DestinationScenario, ElementName=ChoiceCtrl, Mode=TwoWay}" Width="200"/>
-                </StackPanel>
+                    </StackPanel>
                 <StackPanel>
                     <Label Content="Score" FontFamily="Segoe UI Semibold" FontSize="16" />
                     <TextBox Text="{Binding Choice.Score,ElementName=ChoiceCtrl}" />

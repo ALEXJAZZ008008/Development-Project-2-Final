@@ -11,10 +11,10 @@ namespace Scenarios.Storyboard.ViewModels
         private string _narrationSoundPath;
         private string _soundEffectPath;
 
-        private int _ambientSoundVolume;
-        private int _narrationVolume;
-        private int _soundEffectVolume;
-
+        private int _ambientSoundVolume = 100;
+        private int _narrationVolume = 100;
+        private int _soundEffectVolume = 100;
+    
         private bool _soundEffectAtStart;
 
         public ScenarioSoundOptionsViewModel()

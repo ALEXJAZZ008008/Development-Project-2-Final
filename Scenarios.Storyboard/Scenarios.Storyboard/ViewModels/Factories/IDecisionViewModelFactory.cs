@@ -2,6 +2,6 @@
 {
     public interface IDecisionViewModelFactory
     {
-        DecisionViewModel Create(ScenarioViewModel parentScenario);
+        DecisionViewModel Create();
     }
 }

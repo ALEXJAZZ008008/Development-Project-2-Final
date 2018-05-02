@@ -13,8 +13,8 @@ namespace Scenarios.Storyboard.ViewModels
         private readonly IVideoThumbnailPreviewer _thumbnailPreviewer;
 
         private string _videoFilePath;
-        private int _videoBrightness;
-        private int _transitionLength;
+        private int _videoBrightness = 100;
+        private float _transitionLength = 1;
         private string _thumbnailPath;
 
         public ScenarioVideoOptionsViewModel(IVideoThumbnailPreviewer thumbnailPreviewer,
@@ -56,7 +56,7 @@ namespace Scenarios.Storyboard.ViewModels
             }
         }
 
-        public int InTransitionLength
+        public float InTransitionLength
         {
             get => _transitionLength;
 
@@ -87,7 +87,7 @@ namespace Scenarios.Storyboard.ViewModels
             OpenFileDialog dialog = new OpenFileDialog();
             bool? HasResult = dialog.ShowDialog();
             VideoFilePath = dialog.FileName;
-            VideoFilePath = VideoFilePath.Replace("\\", "/");
+            //VideoFilePath = VideoFilePath.Replace("\\", "/");
 
             GetVideoThumbnail();
         }
@@ -109,7 +109,6 @@ namespace Scenarios.Storyboard.ViewModels
                 try
                 {
                     fullPath = Path.GetFullPath(VideoFilePath);
-                    fullPath = fullPath.Replace("\\", "/");
                     _videoPreviewer.LaunchVideoPreview(fullPath);
                 }
                 catch (System.Exception)

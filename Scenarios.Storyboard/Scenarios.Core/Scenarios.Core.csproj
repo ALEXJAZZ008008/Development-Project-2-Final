@@ -44,15 +44,17 @@
   <ItemGroup>
     <Compile Include="FireArc.cs" />
     <Compile Include="IFireArcUtility.cs" />
-    <Compile Include="ISmokeArcUtility.cs" />
+    <Compile Include="IStoryboardStore.cs" />
     <Compile Include="IUnityPlayer.cs" />
     <Compile Include="IUserFileSelector.cs" />
     <Compile Include="IVideoPreviewer.cs" />
     <Compile Include="IVideoThumbnailPreviewer.cs" />
     <Compile Include="JsonCommandLineArgUnityPlayer.cs" />
+    <Compile Include="JsonScenarioListStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SmokeArc.cs" />
+    <Compile Include="UnityFilePathStringToWindowsFilePathHelper.cs" />
     <Compile Include="WindowsFileDialogFileSelector.cs" />
+    <Compile Include="WindowsFilePathStringToUnityHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JSONParser\JSONParser.csproj">

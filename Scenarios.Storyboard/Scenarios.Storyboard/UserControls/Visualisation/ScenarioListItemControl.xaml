@@ -14,16 +14,29 @@
                 </Border>
                 <StackPanel Margin="30,0,0,0">
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Name"  FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" FontSize="16" />
-                    <Label Content="{Binding Scenario.Name, ElementName=scenarioItem}" FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" FontSize="16" VerticalAlignment="Center"/>
+                        <Label Content="Name"  FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" FontSize="16" Foreground="#CC119EDA" />
+                    <Label Content="{Binding Scenario.Name, ElementName=scenarioItem}"
+                           FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" 
+                           FontSize="16"
+                           VerticalAlignment="Center"
+                           Foreground="White" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Text"  FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" FontSize="16" />
-                    <Label Content="{Binding Scenario.ScenarioText, ElementName=scenarioItem}" FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" FontSize="16" VerticalAlignment="Center"/>
+                        <Label Content="Text"  
+                               FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana"
+                               FontSize="16"
+                               Foreground="#CC119EDA" />
+                    <Label Content="{Binding Scenario.ScenarioText, ElementName=scenarioItem}" FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" FontSize="16" VerticalAlignment="Center" Foreground="White"/>
                 </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Decision"  FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" FontSize="16" />
-                        <Label Content="{Binding Scenario.Decision.DecisionText, ElementName=scenarioItem}" FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" FontSize="16" VerticalAlignment="Center"/>
+                        <Label Content="Decision"  FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana"
+                               FontSize="16" 
+                               Foreground="#CC119EDA" />
+                        <Label Content="{Binding Scenario.Decision.DecisionText, ElementName=scenarioItem}" 
+                               FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana"
+                               FontSize="16"
+                               VerticalAlignment="Center"
+                               Foreground="White"/>
                     </StackPanel>
                 </StackPanel>
         </StackPanel>

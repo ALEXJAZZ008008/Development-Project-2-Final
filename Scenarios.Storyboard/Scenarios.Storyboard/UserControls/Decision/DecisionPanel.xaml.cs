@@ -1,7 +1,7 @@
 ﻿using Scenarios.Storyboard.ViewModels;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Scenarios.Storyboard.UserControls.Decision
 {
@@ -15,11 +15,11 @@ namespace Scenarios.Storyboard.UserControls.Decision
                                 typeof(DecisionViewModel),
                                 typeof(DecisionPanel));
 
-        public static readonly DependencyProperty NewChoiceCommandProperty =
-            DependencyProperty.Register("NewChoiceCommand",
-                        typeof(ICommand),
-                        typeof(DecisionPanel));
-
+        public static readonly DependencyProperty AvailableDestinationsProperty =
+            DependencyProperty.Register("AvailableDestinations",
+                               typeof(ObservableCollection<ScenarioViewModel>),
+                               typeof(DecisionPanel)); 
+        
         public DecisionPanel()
         {
             InitializeComponent();
@@ -32,11 +32,11 @@ namespace Scenarios.Storyboard.UserControls.Decision
             set => SetValue(DecisionProperty, value);
         }
 
-        public ICommand NewChoiceCommand
+        public ObservableCollection<ScenarioViewModel> AvailableDestinations
         {
-            get => (ICommand)GetValue(NewChoiceCommandProperty);
+            get => (ObservableCollection<ScenarioViewModel>)GetValue(AvailableDestinationsProperty);
 
-            set => SetValue(NewChoiceCommandProperty, value);
+            set => SetValue(AvailableDestinationsProperty, value);
         }
     }
 }

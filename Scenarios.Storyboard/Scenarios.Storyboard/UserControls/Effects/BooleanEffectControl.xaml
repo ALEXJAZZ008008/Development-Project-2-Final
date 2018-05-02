@@ -9,6 +9,6 @@
              x:Name="BooleanEffect">
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
         <Label Content="{Binding Path=EffectVisual, ElementName=BooleanEffect}" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="15,0,15,0" Foreground="White" />
-        <!--<controls:ToggleSwitch HorizontalAlignment="Center" VerticalAlignment="Center" Header="{Binding Path=EffectName, ElementName=BooleanEffect}" IsChecked="{Binding Path=EffectIsEnabled, ElementName=BooleanEffect, Mode=TwoWay}" OnLabel="Enabled" OffLabel="Disabled" Margin="15,0,15,0" Foreground="White" FontSize="16" />-->
+        <controls:ToggleSwitch HorizontalAlignment="Center" VerticalAlignment="Center" Header="{Binding Path=EffectName, ElementName=BooleanEffect}" IsChecked="{Binding Path=EffectIsEnabled, ElementName=BooleanEffect, Mode=TwoWay}" OnLabel="Enabled" OffLabel="Disabled" Margin="15,0,15,0" Foreground="White" FontSize="16" />
     </StackPanel>
 </UserControl>

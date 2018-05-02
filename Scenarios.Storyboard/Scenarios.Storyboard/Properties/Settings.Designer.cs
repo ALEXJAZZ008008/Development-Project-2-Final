@@ -12,7 +12,7 @@ namespace Scenarios.Storyboard.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.3.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -23,25 +23,31 @@ namespace Scenarios.Storyboard.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\561951\\Downloads\\vlc-3.0.2-win32\\vlc-3.0.2\\vlc.exe")]
         public string vlcPath {
             get {
                 return ((string)(this["vlcPath"]));
             }
+            set {
+                this["vlcPath"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("http://download.videolan.org/pub/videolan/vlc/3.0.1/win64/vlc-3.0.1-win64.zip")]
         public string vlcDownloadPath {
             get {
                 return ((string)(this["vlcDownloadPath"]));
             }
+            set {
+                this["vlcDownloadPath"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Temp\\!!!Work!!!\\Semester 2\\Development-Project-2-Final\\Unity\\Arc\\Builds\\Arc.ex" +
             "e")]
@@ -49,18 +55,24 @@ namespace Scenarios.Storyboard.Properties {
             get {
                 return ((string)(this["fireArcPath"]));
             }
+            set {
+                this["fireArcPath"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\561951\\thumbnails")]
         public string thumbnailPath {
             get {
                 return ((string)(this["thumbnailPath"]));
             }
+            set {
+                this["thumbnailPath"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Temp\\!!!Work!!!\\Semester 2\\Development-Project-2-Final\\Unity\\Scenarios\\Builds\\" +
             "Scenarios.exe")]
@@ -68,14 +80,32 @@ namespace Scenarios.Storyboard.Properties {
             get {
                 return ((string)(this["unityPath"]));
             }
+            set {
+                this["unityPath"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string smokeArcPath {
+        public string loadsavePath {
             get {
-                return ((string)(this["smokeArcPath"]));
+                return ((string)(this["loadsavePath"]));
+            }
+            set {
+                this["loadsavePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string arcOutputPath {
+            get {
+                return ((string)(this["arcOutputPath"]));
+            }
+            set {
+                this["arcOutputPath"] = value;
             }
         }
     }

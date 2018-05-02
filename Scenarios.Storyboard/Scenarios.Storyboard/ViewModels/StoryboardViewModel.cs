@@ -1,4 +1,6 @@
 ﻿using MahApps.Metro.Controls.Dialogs;
+using Microsoft.Msagl.Drawing;
+using Microsoft.Msagl.WpfGraphControl;
 using Scenarios.Core;
 using Scenarios.Storyboard.Adapters;
 using Scenarios.Storyboard.Commands;
@@ -7,6 +9,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Scenarios.Storyboard.ViewModels
@@ -19,10 +22,9 @@ namespace Scenarios.Storyboard.ViewModels
 
         private readonly IScenarioViewModelFactory _scenarioFactory;
         private readonly IUnityPlayer _unityPlayer;
+        private readonly IScenarioListStore _scenarioListStore;
 
         private string _storyboardName;
-
-        private string _outputPath;
 
         protected StoryboardViewModel()
         {
@@ -32,13 +34,17 @@ namespace Scenarios.Storyboard.ViewModels
 
         public StoryboardViewModel(IScenarioViewModelFactory scenarioFactory, 
             IDialogCoordinator dialogCoordinator,
-            IUnityPlayer unityPlayer)
+            IUnityPlayer unityPlayer, 
+            IScenarioListStore scenarioListStore)
         {
             _scenarioFactory = scenarioFactory ?? 
                 throw new ArgumentNullException(nameof(scenarioFactory));
 
             _dialogCoordinator = dialogCoordinator ??
                 throw new ArgumentNullException(nameof(dialogCoordinator));
+
+            _scenarioListStore = scenarioListStore ??
+                throw new ArgumentNullException(nameof(scenarioListStore));
 
             Scenarios = new ObservableCollection<ScenarioViewModel>();
 
@@ -47,6 +53,8 @@ namespace Scenarios.Storyboard.ViewModels
             AddNewScenarioCommand = new DelegateCommand(AddNewScenario);
             RemoveScenarioCommand = new DelegateCommand(RemoveScenario);
             CreateJsonCommand = new DelegateCommand(CreateJson);
+            SaveStoryboardCommand = new DelegateCommand(SaveStoryboard);
+            DisplayGraphWindowCommand = new DelegateCommand(DisplayGraphWindow);
         }
 
         public string Name
@@ -59,19 +67,7 @@ namespace Scenarios.Storyboard.ViewModels
                 OnPropertyChanged();
             }
         }
-
-
-        public string OutputPath
-        {
-            get => _outputPath;
-
-            set
-            {
-                _outputPath = value;
-                OnPropertyChanged();
-            }
-        }
-
+        
         public ScenarioViewModel SelectedScenario
         {
             get => _selectedScenario;
@@ -96,6 +92,10 @@ namespace Scenarios.Storyboard.ViewModels
         public ICommand AddNewScenarioCommand { get; }
 
         public ICommand RemoveScenarioCommand { get; }
+
+        public ICommand SaveStoryboardCommand { get; }
+
+        public ICommand DisplayGraphWindowCommand { get; }
 
         public bool SidePanelVisible
         {
@@ -130,9 +130,52 @@ namespace Scenarios.Storyboard.ViewModels
 
             API.JSONParser.TObjectToJSON(ref output, scenarioList);
 
-            MessageBox.Show(output);
+            #if Debug
+                MessageBox.Show(output);
+            #endif
 
             _unityPlayer.PlayInUnity(scenarioList);
+        }
+
+        private void SaveStoryboard(object parameter)
+        {
+            if (Name != null)
+            {
+                API.ScenarioList scenarioList =
+                    StoryboardViewModelToScenarioListAdapter.Convert(this);
+
+                _scenarioListStore.Store(scenarioList);
+            }
+            else
+            {
+                MessageBox.Show("Please name the storyboard.");
+            }
+
+            MessageBox.Show($"Saved {Name}");
+        }
+
+        private void DisplayGraphWindow(object parameter)
+        {
+            GraphViewer graphViewer = new GraphViewer();
+            DockPanel graphViewerPanel = new DockPanel();
+            Grid mainGrid = new Grid();
+            mainGrid.Children.Add(graphViewerPanel);
+            graphViewer.BindToPanel(graphViewerPanel);
+
+            Window window = new Window();
+            window.Content = mainGrid;
+            window.Loaded += (a, b) =>
+            {
+                Graph graph = GraphFactory.CreateGraph(this);
+                graphViewer.Graph = graph;
+            };
+
+            window.ShowDialog();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void OnOpening(object parameter)

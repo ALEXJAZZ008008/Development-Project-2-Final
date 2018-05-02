@@ -1,5 +1,6 @@
 ﻿using MahApps.Metro.Controls.Dialogs;
 using Moq;
+using Scenarios.Core;
 using Scenarios.Storyboard.ViewModels;
 using Scenarios.Storyboard.ViewModels.Factories;
 using System;
@@ -19,11 +20,20 @@ namespace Scenarios.Storyboard.Tests.UnitTests
             Mock<IScenarioViewModelFactory> scenarioViewModelFactoryMock =
                 new Mock<IScenarioViewModelFactory>();
 
+
+            Mock<IScenarioListStore> scenarioListStoreMock =
+                new Mock<IScenarioListStore>();
+
+            Mock<IUnityPlayer> unityPlayerMock =
+                new Mock<IUnityPlayer>();
+
             Exception recordedException = Record.Exception(() =>
             {
                 StoryboardViewModel sut =
                     new StoryboardViewModel(scenarioViewModelFactoryMock.Object,
-                                            nullDialogCoordinator);
+                                            nullDialogCoordinator,
+                                            unityPlayerMock.Object,
+                                            scenarioListStoreMock.Object);
             });
 
             Assert.IsType<ArgumentNullException>(recordedException);
@@ -35,6 +45,13 @@ namespace Scenarios.Storyboard.Tests.UnitTests
             Mock<IDialogCoordinator> mockDialogCoordinator =
                 new Mock<IDialogCoordinator>();
 
+
+            Mock<IScenarioListStore> scenarioListStoreMock =
+                new Mock<IScenarioListStore>();
+
+            Mock<IUnityPlayer> unityPlayerMock =
+                new Mock<IUnityPlayer>();
+
             IScenarioViewModelFactory scenarioViewModelFactoryMock =
                 null;
 
@@ -42,7 +59,9 @@ namespace Scenarios.Storyboard.Tests.UnitTests
             {
                 StoryboardViewModel sut =
                     new StoryboardViewModel(scenarioViewModelFactoryMock,
-                                            mockDialogCoordinator.Object);
+                                            mockDialogCoordinator.Object,
+                                            unityPlayerMock.Object,
+                                            scenarioListStoreMock.Object);
             });
 
             Assert.IsType<ArgumentNullException>(recordedException);
@@ -56,6 +75,12 @@ namespace Scenarios.Storyboard.Tests.UnitTests
 
             Mock<IScenarioViewModelFactory> scenarioViewModelFactoryMock =
                 new Mock<IScenarioViewModelFactory>();
+
+            Mock<IUnityPlayer> unityPlayerMock =
+                new Mock<IUnityPlayer>();
+
+            Mock<IScenarioListStore> scenarioListStoreMock =
+                new Mock<IScenarioListStore>();
 
             Mock<StoryboardViewModel> storyboardMock =
                 new Mock<StoryboardViewModel>();
@@ -87,7 +112,9 @@ namespace Scenarios.Storyboard.Tests.UnitTests
 
             StoryboardViewModel sut =
                 new StoryboardViewModel(scenarioViewModelFactoryMock.Object,
-                                        dialogCoordinatorMock.Object)
+                                        dialogCoordinatorMock.Object,
+                                        unityPlayerMock.Object,
+                                        scenarioListStoreMock.Object)
                 {
                     Scenarios = collection
                 };
@@ -105,6 +132,12 @@ namespace Scenarios.Storyboard.Tests.UnitTests
 
             Mock<IScenarioViewModelFactory> scenarioViewModelFactoryMock =
                 new Mock<IScenarioViewModelFactory>();
+
+            Mock<IScenarioListStore> scenarioListStoreMock =
+                new Mock<IScenarioListStore>();
+
+            Mock<IUnityPlayer> unityPlayerMock =
+                new Mock<IUnityPlayer>();
 
             Mock<StoryboardViewModel> storyboardMock =
                 new Mock<StoryboardViewModel>();
@@ -144,7 +177,9 @@ namespace Scenarios.Storyboard.Tests.UnitTests
 
             StoryboardViewModel sut =
                 new StoryboardViewModel(scenarioViewModelFactoryMock.Object,
-                                        dialogCoordinatorMock.Object)
+                                        dialogCoordinatorMock.Object,
+                                        unityPlayerMock.Object,
+                                        scenarioListStoreMock.Object)
                 {
                     Scenarios = collection,
                     SelectedScenario = stub1

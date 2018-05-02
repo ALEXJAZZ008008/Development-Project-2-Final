@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:decision="clr-namespace:Scenarios.Storyboard.UserControls.Decision"
+             xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="400"
@@ -17,22 +19,28 @@
                     </StackPanel>
                     <TextBox Margin="0,0,0,10" Text="{Binding Decision.DecisionText, ElementName=DecisionPnl}"/>
                     <StackPanel Orientation="Horizontal">
-                    <Label Content="{iconPacks:Material Kind=Timer, Height=40, Width=40}" Foreground="White"/>
-                    <Label Content="Decision Wait Time" FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" Foreground="White"/>
+                        <Label Content="{iconPacks:Material Kind=Timer, Height=40, Width=40}" Foreground="White"/>
+                        <Label Content="Decision Wait Time" FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" Foreground="White"/>
                         <TextBox Width="40" Height="40" Text="{Binding Decision.DecisionWaitTime, ElementName=DecisionPnl}"/>
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="Choices">
                 <StackPanel>
-                    <ListBox ItemsSource="{Binding Decision.Choices, ElementName=DecisionPnl}">
-                        <ListBox.ItemTemplate>
+                    <ListView ItemsSource="{Binding Decision.Choices, ElementName=DecisionPnl}"
+                              SelectedItem="{Binding Decision.SelectedChoice, ElementName=DecisionPnl}">
+                        <ListView.InputBindings>
+                            <KeyBinding Key="Delete" Command="{Binding Path=Decision.RemoveSelectedChoiceCommand, ElementName=DecisionPnl}" />
+                        </ListView.InputBindings>
+                        <ListView.ItemTemplate>
                             <DataTemplate>
-                                <decision:ChoiceControl Choice="{Binding}" Margin="0,0,0,10"/>
+                                <decision:ChoiceControl Choice="{Binding}" Margin="0,0,0,10"
+                                                        AvailableDestinations="{Binding Path=AvailableDestinations, ElementName=DecisionPnl, diag:PresentationTraceSources.TraceLevel=High}"/>
                             </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                    <Button Command="{Binding Decision.AddNewChoiceCommand, ElementName=DecisionPnl}" Background="Green" Width="150">
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button Command="{Binding Decision.AddNewChoiceCommand, ElementName=DecisionPnl}"
+                            Background="Green" Width="150">
                         <Grid>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="{iconPacks:Modern Kind=Add}" Foreground="White" />

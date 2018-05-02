@@ -1,4 +1,6 @@
 ﻿using Scenarios.Storyboard.Commands;
+using Scenarios.Storyboard.ViewModels.Factories;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -7,20 +9,32 @@ namespace Scenarios.Storyboard.ViewModels
 {
     public class DecisionViewModel: PropertyChangedNotifier
     {
-        private string _decisionText;
-        private int _decisionWaitTime;
-        private ScenarioViewModel _parentScenario;
+        private IChoiceViewModelFactory _choiceFactory;
 
-        public DecisionViewModel(ScenarioViewModel parentScenario)
+        private string _decisionText;
+        private float _decisionWaitTime;
+        private ScenarioViewModel _parentScenario;
+        private ChoiceViewModel _selectedChoice;
+
+        public DecisionViewModel(IChoiceViewModelFactory choiceFactory)
         {
-            _parentScenario = parentScenario;
+            _choiceFactory = choiceFactory ??
+                throw new ArgumentNullException(nameof(choiceFactory));
+
             Choices = new ObservableCollection<ChoiceViewModel>();
             AddNewChoiceCommand = new DelegateCommand(AddNewChoice);
+            RemoveSelectedChoiceCommand = new DelegateCommand(RemoveSelectedChoice);
         }
 
         public ScenarioViewModel ParentScenario
         {
             get => _parentScenario;
+
+            set
+            {
+                _parentScenario = value;
+                OnPropertyChanged();
+            }
         }
 
         /// <summary>
@@ -38,7 +52,7 @@ namespace Scenarios.Storyboard.ViewModels
             }
         }
 
-        public int DecisionWaitTime
+        public float DecisionWaitTime
         {
             get => _decisionWaitTime;
 
@@ -49,13 +63,36 @@ namespace Scenarios.Storyboard.ViewModels
             }
         }
 
+        public ChoiceViewModel SelectedChoice
+        {
+            get => _selectedChoice;
+
+            set
+            {
+                _selectedChoice = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand AddNewChoiceCommand { get; }
+
+        public ICommand RemoveSelectedChoiceCommand { get; }
 
         public ObservableCollection<ChoiceViewModel> Choices { get; set; }
 
         private void AddNewChoice(object parameter)
         {
-            Choices.Add(new ChoiceViewModel(this));
+            ChoiceViewModel choiceViewModel = _choiceFactory.Create();
+
+            Choices.Add(choiceViewModel);
+        }
+
+        private void RemoveSelectedChoice(object parameter)
+        {
+            if (_selectedChoice != null)
+            {
+                Choices.Remove(SelectedChoice);
+            }
         }
     }
 }

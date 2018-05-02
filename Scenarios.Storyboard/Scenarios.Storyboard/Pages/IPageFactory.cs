@@ -7,5 +7,9 @@ namespace Scenarios.Storyboard.Pages
         FrontPage CreateFrontPage();
 
         StoryboardEditorPage CreateStoryboardEditorPage();
+
+        SettingsPage CreateSettingsPage();
+
+        LoadStoryboardPage CreateLoadStoryboardPage();
     }
 }

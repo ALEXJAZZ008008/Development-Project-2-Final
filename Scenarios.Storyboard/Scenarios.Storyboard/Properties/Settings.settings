@@ -2,22 +2,25 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Scenarios.Storyboard.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="vlcPath" Type="System.String" Scope="Application">
+    <Setting Name="vlcPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Users\561951\Downloads\vlc-3.0.2-win32\vlc-3.0.2\vlc.exe</Value>
     </Setting>
-    <Setting Name="vlcDownloadPath" Type="System.String" Scope="Application">
+    <Setting Name="vlcDownloadPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://download.videolan.org/pub/videolan/vlc/3.0.1/win64/vlc-3.0.1-win64.zip</Value>
     </Setting>
-    <Setting Name="fireArcPath" Type="System.String" Scope="Application">
+    <Setting Name="fireArcPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Temp\!!!Work!!!\Semester 2\Development-Project-2-Final\Unity\Arc\Builds\Arc.exe</Value>
     </Setting>
-    <Setting Name="thumbnailPath" Type="System.String" Scope="Application">
+    <Setting Name="thumbnailPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Users\561951\thumbnails</Value>
     </Setting>
-    <Setting Name="unityPath" Type="System.String" Scope="Application">
+    <Setting Name="unityPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Temp\!!!Work!!!\Semester 2\Development-Project-2-Final\Unity\Scenarios\Builds\Scenarios.exe</Value>
     </Setting>
-    <Setting Name="smokeArcPath" Type="System.String" Scope="Application">
+    <Setting Name="loadsavePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="arcOutputPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

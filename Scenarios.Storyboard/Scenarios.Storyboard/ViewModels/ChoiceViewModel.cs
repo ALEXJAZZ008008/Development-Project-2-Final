@@ -9,13 +9,10 @@ namespace Scenarios.Storyboard.ViewModels
         private string _feedbackText;
         private int _score;
 
-        private DecisionViewModel _parentDecision;
         private ScenarioViewModel _destinationScenario;
 
-        public ChoiceViewModel(DecisionViewModel parentDecision)
+        public ChoiceViewModel()
         {
-            _parentDecision = parentDecision ?? 
-                throw new ArgumentNullException(nameof(DecisionViewModel));
         }
         
         public ScenarioViewModel DestinationScenario
@@ -62,9 +59,15 @@ namespace Scenarios.Storyboard.ViewModels
             }
         }
 
-        public DecisionViewModel ParentDecision
-        {
-            get => _parentDecision;
-        }
+        //public DecisionViewModel ParentDecision
+        //{
+        //    get => _parentDecision;
+
+        //    set
+        //    {
+        //        _parentDecision = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
     }
 }

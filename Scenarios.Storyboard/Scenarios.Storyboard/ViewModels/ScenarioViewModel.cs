@@ -53,7 +53,10 @@ namespace Scenarios.Storyboard.ViewModels
 
             _effectOptions = effectsFactory.Create(this);
 
-            _decision = decisionFactory.Create(this);
+            DecisionViewModel decisionViewModel = decisionFactory.Create();
+            decisionViewModel.ParentScenario = this;
+
+            Decision = decisionViewModel;
         }
         
         /// <summary>
@@ -147,6 +150,12 @@ namespace Scenarios.Storyboard.ViewModels
         public StoryboardViewModel Storyboard
         {
             get => _parentStoryboard;
+
+            set
+            {
+                _parentStoryboard = value;
+                OnPropertyChanged();
+            }
         }
         
         public override bool Equals(object obj)

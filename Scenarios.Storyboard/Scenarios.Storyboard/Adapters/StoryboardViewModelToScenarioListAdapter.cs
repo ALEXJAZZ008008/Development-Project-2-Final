@@ -13,6 +13,7 @@ namespace Scenarios.Storyboard.Adapters
             API.ScenarioList scenarioList = new API.ScenarioList();
 
             scenarioList.SetScenarios(ConvertStoryboard(storyboard));
+            scenarioList.SetName(storyboard.Name);
             
             return scenarioList;
         }
@@ -27,8 +28,6 @@ namespace Scenarios.Storyboard.Adapters
             {
                 Scenario scenario = 
                     ScenarioViewModelToScenarioAdapter.Convert(viewModel);
-
-                scenario.SetOutputPath(storyboard.OutputPath.Replace("\\", "/"));
 
                 List<Choice> choices = new List<Choice>();
 

@@ -6,6 +6,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Scenarios.Storyboard.Vlc
@@ -13,68 +14,87 @@ namespace Scenarios.Storyboard.Vlc
     public class VlcMediaPreviewer : IVideoPreviewer, IVideoThumbnailPreviewer, IDisposable
     {
         private Process _vlcVideoPlayerProcess;
-        private string _vlcPath;
-        private string _thumbnailPath;
+        private string _vlcPath = "";
+        private string _thumbnailPath = "";
         
         public VlcMediaPreviewer(string vlcPath,
             string vlcDownloadPath,
             string thumbnailPath)
         {
-            _vlcPath = Path.GetFullPath(vlcPath);
-            _thumbnailPath = Path.GetFullPath(thumbnailPath);
-            
-            //using (var client = new WebClient())
-            //{
-            //    client.DownloadFile(vlcDownloadPath, "targetPath");
-            //}
-            
-            //ZipFile.ExtractToDirectory(targetPath, vlcPath);
+            try
+            {
+                _vlcPath = Path.GetFullPath(vlcPath);
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Unable to Load VLCMediaPreviewer" + 
+                                Environment.NewLine +
+                                exc.Message);
+            }
+
+
+            try
+            {
+                _thumbnailPath = Path.GetFullPath(thumbnailPath);
+
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Unable to Load Thumbnail Path" +
+                                Environment.NewLine +
+                                exc.Message);
+            }
         }
 
         public string GetThumbnailPathFor(string videoFilePath)
         {
-            //string outputName = Path.GetFileNameWithoutExtension(videoFilePath);
-            //string getSnapshotArgs =
-            //    $@"--qt-start-minimized --dummy-quiet -I dummy --rate=1 {videoFilePath} --video-filter=scene --vout=dummy --aout=dummy --scene-replace --start-time=10 --stop-time=11  --scene-format=png --scene-ratio=24 --scene-prefix={outputName} --scene-path={_thumbnailPath} vlc://quit";
-            ////--stop-time = 11
-            ////vlc://quit
-            //ProcessStartInfo processStartInfo = new ProcessStartInfo
-            //{
-            //    Arguments = getSnapshotArgs,
-            //    FileName = _vlcPath,
-            //    UseShellExecute = true
-            //};
+            string thumbnail = null;
 
-            //_vlcVideoPlayerProcess =
-            //    Process.Start(processStartInfo);
+            if (_thumbnailPath != null)
+            {
+                string outputName = Path.GetFileNameWithoutExtension(videoFilePath);
+                string getSnapshotArgs =
+                    $@"--qt-start-minimized --dummy-quiet -I dummy --rate=1 {videoFilePath} --video-filter=scene --vout=dummy --aout=dummy --scene-replace --start-time=10 --stop-time=11  --scene-format=png --scene-ratio=24 --scene-prefix={outputName} --scene-path={_thumbnailPath} vlc://quit";
+                //--stop-time = 11
+                //vlc://quit
+                ProcessStartInfo processStartInfo = new ProcessStartInfo
+                {
+                    Arguments = getSnapshotArgs,
+                    FileName = _vlcPath,
+                    UseShellExecute = true
+                };
 
-            //try
-            //{
-            //    _vlcVideoPlayerProcess.WaitForExit();
-            //}
-            //catch (Exception)
-            //{
-            //    throw;
-            //}
-            //finally
-            //{
-            //    if (_vlcVideoPlayerProcess != null &&
-            //        !_vlcVideoPlayerProcess.HasExited)
-            //    {
-            //        _vlcVideoPlayerProcess.Kill();
-            //    }
-            //}
+                _vlcVideoPlayerProcess =
+                    Process.Start(processStartInfo);
 
-            //if (_vlcVideoPlayerProcess != null && 
-            //    !_vlcVideoPlayerProcess.HasExited)
-            //{
-            //    _vlcVideoPlayerProcess.Kill();
-            //}
+                try
+                {
+                    _vlcVideoPlayerProcess.WaitForExit();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    if (_vlcVideoPlayerProcess != null &&
+                        !_vlcVideoPlayerProcess.HasExited)
+                    {
+                        _vlcVideoPlayerProcess.Kill();
+                    }
+                }
 
-            //string thumbnail = 
-            //    Directory.GetFiles(_thumbnailPath).FirstOrDefault(s => s.Contains($"{outputName}.png"));
+                if (_vlcVideoPlayerProcess != null &&
+                    !_vlcVideoPlayerProcess.HasExited)
+                {
+                    _vlcVideoPlayerProcess.Kill();
+                }
 
-            return null;
+                thumbnail =
+                    Directory.GetFiles(_thumbnailPath).FirstOrDefault(s => s.Contains($"{outputName}.png"));
+            }
+
+            return thumbnail;
         }
 
         public void LaunchVideoPreview(string videoFilePath)

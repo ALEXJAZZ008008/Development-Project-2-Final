@@ -49,6 +49,15 @@
     <Reference Include="MahApps.Metro.IconPacks, Version=2.2.0.12, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.IconPacks.2.2.0\lib\net46\MahApps.Metro.IconPacks.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Msagl">
+      <HintPath>..\Microsoft.Msagl.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Msagl.Drawing">
+      <HintPath>..\Microsoft.Msagl.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Msagl.WpfGraphControl">
+      <HintPath>..\Microsoft.Msagl.WpfGraphControl.dll</HintPath>
+    </Reference>
     <Reference Include="SpicyTaco.AutoGrid, Version=1.2.29.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SpicyTaco.AutoGrid.1.2.29\lib\net40\SpicyTaco.AutoGrid.dll</HintPath>
     </Reference>
@@ -59,9 +68,8 @@
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\SCENARIOS.SceneBuilder 09042018 0802\SCENARIOS.SceneBuilder\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -84,11 +92,14 @@
     <Compile Include="Adapters\ScenarioViewModelToScenarioAdapter.cs" />
     <Compile Include="Adapters\StoryboardViewModelToScenarioListAdapter.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="GraphFactory.cs" />
     <Compile Include="InversionOfControl\Installers\ArcUtilityInstaller.cs" />
     <Compile Include="InversionOfControl\Installers\ExternalServicesInstaller.cs" />
+    <Compile Include="InversionOfControl\Installers\JsonStoreInstaller.cs" />
     <Compile Include="InversionOfControl\Installers\PageInstaller.cs" />
     <Compile Include="InversionOfControl\Installers\StoryboardInstaller.cs" />
     <Compile Include="InversionOfControl\Installers\UnityPlayerInstaller.cs" />
+    <Compile Include="InversionOfControl\Installers\UserFileSelectorInstaller.cs" />
     <Compile Include="InversionOfControl\Installers\ViewModelFactoryInstaller.cs" />
     <Compile Include="InversionOfControl\Installers\ViewModelInstaller.cs" />
     <Compile Include="InversionOfControl\Installers\VlcPreviewerInstaller.cs" />
@@ -96,7 +107,13 @@
       <DependentUpon>FrontPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\IPageFactory.cs" />
+    <Compile Include="Pages\LoadStoryboardPage.xaml.cs">
+      <DependentUpon>LoadStoryboardPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\NavigablePage.cs" />
+    <Compile Include="Pages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\StoryboardEditorPage.xaml.cs">
       <DependentUpon>StoryboardEditorPage.xaml</DependentUpon>
     </Compile>
@@ -122,6 +139,9 @@
     <Compile Include="UserControls\ScenarioPanel.xaml.cs">
       <DependentUpon>ScenarioPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Visualisation\GraphVisualisationControl.xaml.cs">
+      <DependentUpon>GraphVisualisationControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Visualisation\ScenarioListItemControl.xaml.cs">
       <DependentUpon>ScenarioListItemControl.xaml</DependentUpon>
     </Compile>
@@ -137,6 +157,7 @@
     <Compile Include="ViewModels\ChoiceViewModel.cs" />
     <Compile Include="ViewModels\DecisionViewModel.cs" />
     <Compile Include="ViewModels\EffectOptionsViewModel.cs" />
+    <Compile Include="ViewModels\Factories\IChoiceViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IDecisionViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IEffectViewModelFactory.cs" />
     <Compile Include="ViewModels\Factories\IScenarioViewModelFactory.cs" />
@@ -144,7 +165,8 @@
     <Compile Include="ViewModels\Factories\IVideoOptionsViewModelFactory.cs" />
     <Compile Include="ViewModels\Pages\FrontPageViewModel.cs" />
     <Compile Include="ViewModels\NavigablePageViewModel.cs" />
-    <Compile Include="ViewModels\Pages\StoryboardEditorPageViewModel.cs" />
+    <Compile Include="ViewModels\Pages\LoadStoryboardViewModel.cs" />
+    <Compile Include="ViewModels\Pages\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ScenarioSoundOptionsViewModel.cs" />
     <Compile Include="ViewModels\ScenarioVideoOptionsViewModel.cs" />
     <Compile Include="ViewModels\ScenarioViewModel.cs" />
@@ -163,6 +185,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\FrontPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LoadStoryboardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,6 +225,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ScenarioPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Visualisation\GraphVisualisationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,6 +1,5 @@
 ﻿using Scenarios.Storyboard.Pages;
 using System;
-using System.ComponentModel;
 
 namespace Scenarios.Storyboard.ViewModels
 {
@@ -43,8 +42,17 @@ namespace Scenarios.Storyboard.ViewModels
         {
             switch (targetType.Name)
             {
+                case "FrontPage":
+                    SelectedPage = _pageFactory.CreateFrontPage();
+                    break;
+                case "LoadStoryboardPage":
+                    SelectedPage = _pageFactory.CreateLoadStoryboardPage();
+                    break;
                 case "StoryboardEditorPage":
                     SelectedPage = _pageFactory.CreateStoryboardEditorPage();
+                    break;
+                case "SettingsPage":
+                    SelectedPage = _pageFactory.CreateSettingsPage();
                     break;
                 default:
                     break;

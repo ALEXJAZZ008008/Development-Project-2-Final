@@ -1,4 +1,6 @@
-﻿using Scenarios.Storyboard.ViewModels;
+﻿using Scenarios.Core;
+using Scenarios.Storyboard.ViewModels;
+using System.Linq;
 
 namespace Scenarios.Storyboard.Adapters
 {
@@ -8,10 +10,16 @@ namespace Scenarios.Storyboard.Adapters
         {
             API.Scenario scenario = new API.Scenario();
 
+            //Name
+            scenario.SetName(viewModel.Name);
+
             //Transition
             scenario.SetInTransitionLength(viewModel.VideoOptions.InTransitionLength);
 
             //Video
+            string unityVideoPath = 
+                WindowsFilePathStringToUnityHelper.ConvertToUnityStyle(viewModel.VideoOptions.VideoFilePath);
+
             scenario.SetVideoPath(viewModel.VideoOptions.VideoFilePath);
             scenario.SetVideoBrightness((float)viewModel.VideoOptions.VideoBrightness / 100);
 
@@ -25,10 +33,23 @@ namespace Scenarios.Storyboard.Adapters
             scenario.SetEmergencyLightBool(viewModel.EffectOptions.EmergencyLightingIsEnabled);
             scenario.SetLightingIntensity((float)viewModel.EffectOptions.EmergencyLightingIntensity / 100);
 
+            //Fire & Smoke positioning
+            scenario.SetFireArc(viewModel.EffectOptions.FireArcs.ToList());
+            scenario.SetSmokeArc(viewModel.EffectOptions.SmokeArcs.ToList());
+
             //Sound
-            scenario.SetAmbientSoundPath(viewModel.SoundOptions.AmbientSoundPath);
-            scenario.SetNarrationPath(viewModel.SoundOptions.NarrationSoundPath);
-            scenario.SetSoundEffectPath(viewModel.SoundOptions.SoundEffectPath);
+            string unityAmbientSoundPath =
+                WindowsFilePathStringToUnityHelper.ConvertToUnityStyle(viewModel.SoundOptions.AmbientSoundPath);
+            scenario.SetAmbientSoundPath(unityAmbientSoundPath);
+
+            string unityNarrationSoundPath =
+                WindowsFilePathStringToUnityHelper.ConvertToUnityStyle(viewModel.SoundOptions.NarrationSoundPath);
+            scenario.SetNarrationPath(unityNarrationSoundPath);
+
+            string unitySoundEffectPath =
+                WindowsFilePathStringToUnityHelper.ConvertToUnityStyle(viewModel.SoundOptions.SoundEffectPath);
+            scenario.SetSoundEffectPath(unitySoundEffectPath);
+
             scenario.SetAmbientSoundVolume(((float)viewModel.SoundOptions.AmbientSoundVolume / 100));
             scenario.SetNarrationVolume((float)viewModel.SoundOptions.NarrationSoundVolume / 100);
             scenario.SetSoundEffectBool(viewModel.SoundOptions.SoundEffectEnabledAtStart);

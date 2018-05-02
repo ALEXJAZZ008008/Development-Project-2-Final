@@ -1,0 +1,38 @@
+﻿<local:NavigablePage x:Class="Scenarios.Storyboard.Pages.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Scenarios.Storyboard.Pages"
+      xmlns:widgets="clr-namespace:Scenarios.Storyboard.UserControls.Widgets"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="800"
+      Title="SettingsPage">
+    <ScrollViewer>
+        <Grid Width="500" VerticalAlignment="Center">
+        <StackPanel>
+            <Label Content="Settings" HorizontalContentAlignment="Center" FontSize="30"/>
+            <Label Content="Unity Executable Path"></Label>
+            <widgets:FileSelectionControl FilePath="{Binding UnityPath, Mode=TwoWay}" 
+                                          Command="{Binding SetUnityFilePathCommand}"/>
+            <Label Content="Arc Executable Path"></Label>
+            <widgets:FileSelectionControl FilePath="{Binding ArcExecutablePath, Mode=TwoWay}"
+                                          Command="{Binding SetArcExePathCommand}"/>
+            <Label Content="Arc Output Path"></Label>
+            <widgets:FileSelectionControl FilePath="{Binding ArcOutputPath, Mode=TwoWay}" 
+                                          Command="{Binding SetArcOutputPathCommand}"/>
+            <Label Content="VLC Executable Path"></Label>
+            <widgets:FileSelectionControl FilePath="{Binding VlcPath, Mode=TwoWay}"
+                                          Command="{Binding SetVlcFilePathCommand}"/>
+            <Label Content="Thumbnail Path"></Label>
+            <widgets:FileSelectionControl FilePath="{Binding ThumbnailPath, Mode=TwoWay}"
+                                          Command="{Binding SetThumbnailPathCommand}"/>
+            <Label Content="Load/Save Path"></Label>
+            <widgets:FileSelectionControl Margin="0,0,0,20" 
+                                          FilePath="{Binding LoadSavePath, Mode=TwoWay}"
+                                          Command="{Binding SetLoadSavePathCommand}"/>
+            <Button Width="200" Content="Save Settings" Command="{Binding SaveSettingsCommand}"/> 
+        </StackPanel>
+    </Grid>
+    </ScrollViewer>
+</local:NavigablePage>

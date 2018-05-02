@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests\FrontPageViewModelTests.cs" />
+    <Compile Include="UnitTests\SettingsViewModelTest.cs" />
     <Compile Include="UnitTests\StoryboardViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +91,10 @@
     <Analyzer Include="..\packages\xunit.analyzers.0.7.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Scenarios.Core\Scenarios.Core.csproj">
+      <Project>{B637C8BB-FA09-4ED8-992C-745DD67B4306}</Project>
+      <Name>Scenarios.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Scenarios.Storyboard\Scenarios.Storyboard.csproj">
       <Project>{A9AD740D-6B3F-41C5-955A-E0D317094295}</Project>
       <Name>Scenarios.Storyboard</Name>

@@ -4,6 +4,7 @@ using Scenarios.Storyboard.Commands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Scenarios.Storyboard.ViewModels
@@ -11,32 +12,26 @@ namespace Scenarios.Storyboard.ViewModels
     public class ScenarioEffectOptionsViewModel: PropertyChangedNotifier
     {
         private readonly IFireArcUtility _fireArc;
-        private readonly ISmokeArcUtility _smokeArc;
 
         private bool _fireEnabled;
         private bool _smokeEnabled;
         private bool _emergencyLightingEnabled;
         private bool _extinguisherPlumeEnabled;
 
-        private int _emergencyLightingIntensity;
+        private int _emergencyLightingIntensity = 100;
 
         private ScenarioViewModel _parentScenario;
 
         private ICollection<float> _fireArcs;
         private ICollection<float> _smokeArcs;
 
-        //public ScenarioEffectOptionsViewModel(IFireArcUtility fireArcUtility,
-        //    ISmokeArcUtility smokeArcUtility)
-        //{
-        //    SetFireArcsCommand = new DelegateCommand(SetFireArcs);
-        //}
-
         public ScenarioEffectOptionsViewModel(ScenarioViewModel parentScenario, 
-            IFireArcUtility fireArc,
-            ISmokeArcUtility smokeArc)
+            IFireArcUtility fireArc)
         {
             _fireArc = fireArc;
-            _smokeArc = smokeArc;
+
+            FireArcs = new List<float>();
+            SmokeArcs = new List<float>();
 
             _parentScenario = parentScenario ?? 
                 throw new ArgumentNullException(nameof(parentScenario));
@@ -152,7 +147,21 @@ namespace Scenarios.Storyboard.ViewModels
 
         private void SetFireArcs(object parameter)
         {
-            _fireArc.GetFireArcs(ScenarioViewModelToScenarioAdapter.Convert(ParentScenario), ParentScenario.Storyboard.OutputPath.Replace("\\", "/"));
+            try
+            {
+                List<List<float>> arcs =
+                _fireArc.GetFireArcs(ScenarioViewModelToScenarioAdapter.Convert(ParentScenario));
+
+                //_fireArc.GetFireArcs(ScenarioViewModelToScenarioAdapter.Convert(ParentScenario), ParentScenario.Storyboard.OutputPath.Replace("\\", "/"));
+
+                FireArcs = arcs[0];
+
+                SmokeArcs = arcs[1];
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show($"Unable to get positioning" + Environment.NewLine + $"Exception: {exc.Message}");
+            }
         }
     }
 }

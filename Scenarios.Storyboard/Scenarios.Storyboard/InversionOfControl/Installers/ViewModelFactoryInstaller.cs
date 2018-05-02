@@ -20,6 +20,8 @@ namespace Scenarios.Storyboard.InversionOfControl.Installers
                                         .AsFactory());
             container.Register(Component.For<IEffectOptionsViewModelFactory>()
                                         .AsFactory());
+            container.Register(Component.For<IChoiceViewModelFactory>()
+                                        .AsFactory());
         }
     }
 }

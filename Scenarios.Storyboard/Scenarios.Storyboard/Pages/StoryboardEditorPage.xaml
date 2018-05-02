@@ -21,11 +21,15 @@
         <StackPanel>
             <Label HorizontalAlignment="Center" Content="{Binding Name}" FontSize="30"
                        FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana" />
+            <Label Content="Name" FontSize="16"
+                       FontFamily="Segoe UI Semibold, Segoe UI, Lucida Sans Unicode, Verdana"/>
             <TextBox Text="{Binding Name, Mode=TwoWay}" />
-            <Label Content="Output Path" />
-            <TextBox Text="{Binding OutputPath, Mode=TwoWay}" />
-            <Button Command="{Binding CreateJsonCommand}" Content="Create Json"></Button>
-            <TabControl>
+            <Button Command="{Binding CreateJsonCommand}" Content="Start Training Session" />
+            <Button Command="{Binding SaveStoryboardCommand}" Content="Save Storyboard"/>
+            <Button Command="{Binding DisplayGraphWindowCommand}" Content="Display Graph Window (Experimental)"/>
+            <scenariovisualisation:ScenarioListVisualisationControl 
+                            Storyboard="{Binding Path=.}"/>
+            <!--<TabControl>
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
@@ -54,11 +58,12 @@
                         </StackPanel>
                     </TabItem.Header>
                     <TabItem.Content>
-                        <Grid>
-                        </Grid>
+                        <Grid></Grid>
+                        --><!--<scenariovisualisation:GraphVisualisationControl
+                            Storyboard="{Binding Path=.}"/>--><!--
                     </TabItem.Content>
                 </TabItem>
-            </TabControl>
+            </TabControl>-->
         </StackPanel>
         <controls:Flyout Header="Scenario Edit" Position="Right" IsOpen="{Binding SidePanelVisible, Mode=TwoWay}" Width="400">
             <controls:Flyout.Foreground>
@@ -67,7 +72,7 @@
             <controls:Flyout.Background>
                 <SolidColorBrush Color="#FF1B1B1B"/>
             </controls:Flyout.Background>
-            <usercontrols:ScenarioPanel SelectedScenario="{Binding SelectedScenario, Mode=TwoWay}"/>
+            <usercontrols:ScenarioPanel SelectedScenario="{Binding SelectedScenario, Mode=TwoWay}" AvailableDestinations="{Binding Scenarios}"/>
         </controls:Flyout>
     </Grid>
 </pages:NavigablePage>

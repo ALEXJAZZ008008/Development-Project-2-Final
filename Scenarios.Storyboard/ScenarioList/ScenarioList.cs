@@ -6,6 +6,8 @@ namespace API
     {
         private List<Scenario> m_Scenarios;
 
+        private string m_Name;
+
         public ScenarioList()
         {
             m_Scenarios = new List<Scenario>();
@@ -26,9 +28,19 @@ namespace API
             return m_Scenarios;
         }
 
+        public string GetName()
+        {
+            return m_Name;
+        }
+
         public void SetScenarios(List<Scenario> scenarios)
         {
             m_Scenarios = scenarios;
+        }
+
+        public void SetName(string name)
+        {
+            m_Name = name;
         }
     }
 
@@ -78,6 +90,11 @@ namespace API
         /// Empty indicates no scenario choice text.
         /// </summary>
         private string m_ScenarioChoiceText;
+        
+        /// <summary>
+        /// Friendly name used to indicate the scenario.
+        /// </summary>
+        private string m_Name;
 
         /// <summary>
         /// 0 - start of left right arc
@@ -87,6 +104,15 @@ namespace API
         /// repeats
         /// </summary>
         private List<float> m_FireArc;
+
+        /// <summary>
+        /// 0 - start of left right arc
+        /// 1 - start of top bottom arc
+        /// 2 - end of left right arc
+        /// 3 - end of top bottom arc
+        /// repeats
+        /// </summary>
+        private List<float> m_SmokeArc;
 
         /// <summary>
         /// Sets in transition length.
@@ -161,6 +187,7 @@ namespace API
             m_ScenarioChoiceText = string.Empty;
 
             m_FireArc = new List<float>();
+            m_SmokeArc = new List<float>();
 
             m_InTransitionLength = 0.0f;
             m_VideoBrightness = 0.0f;
@@ -190,6 +217,7 @@ namespace API
             m_ScenarioChoiceText = scenario.GetScenarioChoiceText();
 
             m_FireArc = scenario.GetFireArc();
+            m_SmokeArc = scenario.GetSmokeArc();
 
             m_InTransitionLength = scenario.GetInTransitionLength();
             m_VideoBrightness = scenario.GetVideoBrightness();
@@ -206,7 +234,7 @@ namespace API
             m_SoundEffectBool = scenario.GetSoundEffectBool();
         }
 
-        public Scenario(List<Choice> choices, string videoPath, string ambientSoundPath, string narrationPath, string soundEffectPath, string outputPath, string scenarioText, string scenarioChoiceText, List<float> fireArc, float inTransitionLength, float videoBrightness, float lightingIntensity, float ambientSoundVolume, float narrationVolume, float soundEffectVolume, float choiceWaitLength, bool smokeBool, bool fireBool, bool fireExtinguisherBool, bool emergencyLightBool, bool soundEffectBool)
+        public Scenario(List<Choice> choices, string videoPath, string ambientSoundPath, string narrationPath, string soundEffectPath, string outputPath, string scenarioText, string scenarioChoiceText, List<float> fireArc, List<float> smokeArc, float inTransitionLength, float videoBrightness, float lightingIntensity, float ambientSoundVolume, float narrationVolume, float soundEffectVolume, float choiceWaitLength, bool smokeBool, bool fireBool, bool fireExtinguisherBool, bool emergencyLightBool, bool soundEffectBool)
         {
             m_Choices = choices;
 
@@ -219,6 +247,7 @@ namespace API
             m_ScenarioChoiceText = scenarioChoiceText;
 
             m_FireArc = fireArc;
+            m_SmokeArc = smokeArc;
 
             m_InTransitionLength = inTransitionLength;
             m_VideoBrightness = videoBrightness;
@@ -260,6 +289,11 @@ namespace API
             return m_SoundEffectPath;
         }
 
+        public string GetName()
+        {
+            return m_Name;
+        }
+
         public string GetOutputPath()
         {
             return m_OutputPath;
@@ -278,6 +312,11 @@ namespace API
         public List<float> GetFireArc()
         {
             return m_FireArc;
+        }
+
+        public List<float> GetSmokeArc()
+        {
+            return m_SmokeArc;
         }
 
         public float GetInTransitionLength()
@@ -375,6 +414,11 @@ namespace API
             m_ScenarioText = scenarioText;
         }
 
+        public void SetName(string name)
+        {
+            m_Name = name;
+        }
+
         public void SetScenarioChoiceText(string scenarioChoiceText)
         {
             m_ScenarioChoiceText = scenarioChoiceText;
@@ -383,6 +427,11 @@ namespace API
         public void SetFireArc(List<float> fireArc)
         {
             m_FireArc = fireArc;
+        }
+
+        public void SetSmokeArc(List<float> smokeArc)
+        {
+            m_SmokeArc = smokeArc;
         }
 
         public void SetInTransitionLength(float inTransitionLength)

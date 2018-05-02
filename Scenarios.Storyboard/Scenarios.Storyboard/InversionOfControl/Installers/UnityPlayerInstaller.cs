@@ -11,7 +11,8 @@ namespace Scenarios.Storyboard.InversionOfControl.Installers
         {
             container.Register(Component.For<IUnityPlayer>()
                                         .ImplementedBy<JsonCommandLineArgUnityPlayer>()
-                                        .DependsOn(Dependency.OnValue("unityPath", Properties.Settings.Default.unityPath)));
+                                        .DependsOn(Dependency.OnValue("unityPath", Properties.Settings.Default.unityPath))
+                                        .LifestyleTransient());
         }
     }
 }

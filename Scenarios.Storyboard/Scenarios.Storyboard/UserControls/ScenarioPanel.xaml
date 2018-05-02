@@ -34,7 +34,9 @@
             <TabControl Background="Transparent">
                 <TabItem Header="Video">
                     <StackPanel>
-                            <videos:VideoPanel VideoOptions="{Binding SelectedScenario.VideoOptions, ElementName=ScenarioEdit, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}" />
+                            <videos:VideoPanel VideoOptions="{Binding SelectedScenario.VideoOptions, 
+                                ElementName=ScenarioEdit, Mode=TwoWay,
+                                diag:PresentationTraceSources.TraceLevel=High}" />
                             <GroupBox Header="Special Effects">
                                 <effects1:EffectPanel EffectOptions="{Binding SelectedScenario.EffectOptions, ElementName=ScenarioEdit, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}"  />
                             </GroupBox>
@@ -44,7 +46,9 @@
                     <audio:AudioPanel AudioOptions="{Binding SelectedScenario.SoundOptions, ElementName=ScenarioEdit, Mode=TwoWay}"></audio:AudioPanel>
                 </TabItem>
                 <TabItem Header="Decision">
-                    <decision1:DecisionPanel Decision="{Binding SelectedScenario.Decision, ElementName=ScenarioEdit, Mode=TwoWay}" NewChoiceCommand="{Binding AddNewChoiceCommand, ElementName=ScenarioEdit}"/>
+                    <decision1:DecisionPanel 
+                        Decision="{Binding SelectedScenario.Decision, ElementName=ScenarioEdit, Mode=TwoWay}"
+                        AvailableDestinations="{Binding AvailableDestinations, ElementName=ScenarioEdit}"/>
                 </TabItem>
             </TabControl>
         </StackPanel>
